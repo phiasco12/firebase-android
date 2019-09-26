@@ -1,0 +1,35 @@
+android {
+    defaultConfig {
+        multiDexEnabled true
+    }
+}
+
+buildscript {
+    repositories {
+        jcenter()
+        maven { url 'https://maven.fabric.io/public' }
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:+'
+        classpath 'com.google.gms:google-services:4.1.0'
+        classpath 'io.fabric.tools:gradle:1.27.0'
+    }
+}
+
+repositories {
+    maven { url 'https://maven.fabric.io/public' }
+}
+
+dependencies {
+    compile 'me.leolin:ShortcutBadger:1.1.4@aar'
+    compile 'com.google.firebase:firebase-auth:16.2.0'
+    compile('com.crashlytics.sdk.android:crashlytics:2.9.1@aar') {
+        transitive = true
+    }
+}
+
+ext.postBuildExtras = {
+    apply plugin: com.google.gms.googleservices.GoogleServicesPlugin
+    apply plugin: com.crashlytics.tools.gradle.CrashlyticsPlugin
+}
